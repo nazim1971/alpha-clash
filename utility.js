@@ -47,4 +47,10 @@ function setTextElementValueById (elementId,update){
     element.innerText = update;
 }
 
+// find the alphabet to remove its color
+function getElementText (elementId){
+    const element = document.getElementById(elementId);
+    const value = element.innerText;
+    return value;
+}
 

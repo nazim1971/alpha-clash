@@ -24,6 +24,11 @@ function continueGame (){
 function handleKeyPassed (event){
     const playerPressed = event.key;
 
+    // stop the game it pressed "Esc"
+    if(playerPressed === 'Escape'){
+        gameOver();
+    }
+
     const currentAplhaElement = document.getElementById('current-alphabet');
     const currentAlphabet = currentAplhaElement.innerText;
     const currentoLower = currentAlphabet.toLocaleLowerCase();
@@ -62,8 +67,7 @@ function handleKeyPassed (event){
         /** Do it different way */
 
         if(newLife === 0){
-            hideElementById('playground');
-            showElementById('final-score');
+            gameOver();
         }
         
     }
@@ -71,3 +75,13 @@ function handleKeyPassed (event){
 
 document.addEventListener('keyup',handleKeyPassed);
 
+function gameOver (){
+    hideElementById('playground');
+    showElementById('final-score');
+
+    const lastScore = getTextElementValueById('score');
+    setTextElementValueById('game-score',lastScore);
+
+    const runningAlphabet = getElementText('current-alphabet')
+    removeBgById(runningAlphabet);
+}
